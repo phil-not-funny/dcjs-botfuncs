@@ -58,17 +58,20 @@ class Botfuncs {
    */
   addServer(guild, nosave = false, options) {
     if (!this.getServer(guild.id)) {
-      if (!options)
-        this.servers.push({
-          id: guild.id,
-          name: guild.name,
-          prefix: config?.prefix,
-          other: {
-            memberCount: guild.memberCount,
-            partnered: guild.partnered,
-          },
+      let server = {
+        id: guild.id,
+        name: guild.name,
+        prefix: config?.prefix,
+        other: {
+          memberCount: guild.memberCount,
+          partnered: guild.partnered,
+        },
+      };
+      if (options?.properties)
+        options.properties.forEach((prop) => {
+          Object.defineProperty(server, prop.name, prop.value);
         });
-      else this.servers.push(options);
+      this.servers.push(server);
       if (!nosave) this.saveServers(this.latestServersFile);
     }
   }
@@ -174,6 +177,19 @@ class Botfuncs {
     Object.entries(server).forEach((entry) => {
       if (entry[0] === prop) value = entry[1];
     });
+    return value;
+  }
+
+  /**
+   * gets a specific server prop
+   *
+   * @param {String | Number} guildId the discord guild id (server identifier)
+   * @param {String} prop The prop to get
+   * @returns The value of the prop
+   */
+  removeServerProp(guildId, prop) {
+    let value = this.getServerProp(guildId, prop);
+    this.setServerProp(guildId, prop, undefined);
     return value;
   }
 
