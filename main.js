@@ -140,6 +140,27 @@ class Botfuncs {
   }
 
   /**
+   * sets a specific server prop to all servers
+   *
+   * @param {String} prop the prop
+   * @param {any} newValue new prop value
+   *
+   * @returns {Boolean} whether the operation was successfull or not.
+   */
+  setServerPropAll(prop, newValue) {
+    this.servers.forEach((server) => {
+      let posInArray = this.servers.indexOf(server);
+      Object.defineProperty(server, prop, {
+        value: newValue,
+        writable: true,
+        enumerable: true,
+      });
+      this.servers[posInArray] = server;
+    });
+    return this.saveServers(this.latestServersFile);
+  }
+
+  /**
    * gets a specific server prop
    *
    * @param {String | Number} guildId the discord guild id (server identifier)

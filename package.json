@@ -1,6 +1,6 @@
 {
   "name": "dcjs-botfuncs",
-  "version": "0.8.8",
+  "version": "1.0.0",
   "description": "discord bot helper - let the api do the hard work for you",
   "main": "main.js",
   "author": "phil_not_funny",
