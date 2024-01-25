@@ -2,7 +2,7 @@
 
 ### made by phil_not_funny
 
-Discord: _not funny#8951_<br/>
+Discord: phil_not_funny<br/>
 Please report bugs to me via discord!
 
 ## Description
@@ -13,7 +13,7 @@ It mainly focuses on creating server-settings, formatting messages and bot-confi
 
 ## Implementing
 
-Obviously: `npm install discord.js@14.1.2`<br/>
+Obviously: `npm install discord.js`<br/>
 
 You may **import the functions** by using
 
